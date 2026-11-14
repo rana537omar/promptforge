@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PromptForge</title>
+  <meta name="description" content="PromptForge: an AI app builder. Describe a website or app in plain words and watch it get built live, on your own private AI.">
+  <meta property="og:title" content="PromptForge: turn ideas into apps, just by chatting">
+  <meta property="og:description" content="Describe it, watch it appear, refine it by chatting. Live preview, version history, sharing, and a private AI.">
+  <meta property="og:image" content="https://rana537omar.github.io/promptforge/media/banner.png">
+  <link rel="icon" href="media/icon.svg" type="image/svg+xml">
+  <style>
+    :root { color-scheme: dark; --page: #0b0b0f; --surface: #14141b; --surface-2: #1c1c26; --text: #ededf0; --text-2: #c9c9d6; --muted: #9494a6; --border: rgba(201,201,214,.14); --pink: #ff5fa2; --orange: #ff9f43; --violet: #8b7bff; --accent-text: #b3a8ff; }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: "Segoe UI Variable Display", "Segoe UI", system-ui, -apple-system, sans-serif; background: var(--page); color: var(--text); line-height: 1.5; -webkit-font-smoothing: antialiased; }
+    img { max-width: 100%; display: block; }
+    a { color: var(--accent-text); }
+    .wrap { max-width: 1160px; margin: 0 auto; padding: 0 16px; }
+    .topbar { position: sticky; top: 0; z-index: 40; background: rgba(11,11,15,.82); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
+    .topbar .wrap { display: flex; align-items: center; gap: 12px; height: 60px; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 19px; letter-spacing: -.02em; color: var(--text); text-decoration: none; }
+    .brand img { width: 30px; height: 30px; }
+    .topbar nav { margin-left: auto; display: flex; gap: 4px; }
+    .topbar nav a { color: var(--text-2); text-decoration: none; font-size: 14.5px; font-weight: 600; padding: 7px 12px; border-radius: 999px; }
+    .topbar nav a:hover { background: var(--surface-2); color: var(--text); }
+    header.hero { background: #0b0b0f; }
+    h1 { font-size: clamp(30px, 4.4vw, 46px); margin: 36px 0 10px; letter-spacing: -.035em; line-height: 1.1; }
+    h1 span { background: linear-gradient(90deg, var(--orange), var(--pink), var(--violet)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    h2 { font-size: clamp(22px, 2.6vw, 28px); margin: 56px 0 18px; letter-spacing: -.02em; }
+    h2 .k { display: block; font-size: 12.5px; letter-spacing: .2em; text-transform: uppercase; color: var(--accent-text); margin-bottom: 6px; font-weight: 700; }
+    .lead { font-size: 18px; color: var(--text-2); max-width: 840px; margin: 0; }
+    .notice { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--violet); border-radius: 10px; padding: 12px 16px; margin: 26px 0; color: var(--text-2); }
+    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; counter-reset: step; }
+    .step { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 18px; }
+    .step b { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, var(--orange), var(--pink)); color: #fff; margin-bottom: 12px; }
+    .step h3 { margin: 0 0 4px; font-size: 16.5px; }
+    .step p { margin: 0; color: var(--text-2); font-size: 14.5px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 18px 18px 20px; }
+    .card h3 { margin: 0 0 10px; font-size: 16.5px; display: flex; align-items: center; gap: 10px; }
+    .card h3 i { width: 30px; height: 30px; border-radius: 9px; background: rgba(139,123,255,.18); color: var(--accent-text); display: grid; place-items: center; font-style: normal; flex: none; }
+    .card ul { margin: 0; padding-left: 18px; color: var(--text-2); font-size: 14.5px; }
+    .card li + li { margin-top: 5px; }
+    .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 18px; }
+    figure { margin: 0; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }
+    figure button { all: unset; display: block; width: 100%; cursor: zoom-in; }
+    figure button:focus-visible { outline: 3px solid var(--violet); outline-offset: -3px; }
+    figure img { width: 100%; border-bottom: 1px solid var(--border); }
+    figcaption { padding: 11px 14px; font-size: 14px; color: var(--text-2); }
+    figcaption b { color: var(--text); }
+    .phones { max-width: 820px; margin: 28px auto 0; border-radius: 16px; overflow: hidden; border: 1px solid var(--border); }
+    .cta { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; margin: 4px 0 0; }
+    .wa-btn { display: inline-flex; align-items: center; gap: 12px; background: #168f48; color: #fff; text-decoration: none; font-weight: 700; font-size: 17px; padding: 13px 22px 13px 18px; border-radius: 999px; box-shadow: 0 6px 18px rgba(22,143,72,.3); }
+    .wa-btn:hover { background: #127a3d; }
+    .wa-btn:focus-visible, .wa-float:focus-visible { outline: 3px solid #86b6ef; outline-offset: 3px; }
+    .wa-btn small { display: block; font-weight: 500; font-size: 13px; opacity: .9; }
+    .cta-note { color: var(--text-2); font-size: 14.5px; }
+    .wa-float { position: fixed; right: 18px; bottom: 18px; z-index: 50; width: 58px; height: 58px; border-radius: 50%; background: #168f48; display: grid; place-items: center; box-shadow: 0 8px 24px rgba(0,0,0,.45); }
+    .wa-float:hover { background: #127a3d; }
+    .contact { margin-top: 56px; background: radial-gradient(600px 240px at 0% 0%, rgba(255,95,162,.18), transparent 70%), radial-gradient(500px 220px at 100% 100%, rgba(139,123,255,.18), transparent 70%), var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 24px; display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between; }
+    .contact h2 { margin: 0 0 4px; }
+    .contact p { margin: 0; color: var(--text-2); max-width: 640px; }
+    footer { margin: 36px 0 96px; padding-top: 20px; border-top: 1px solid var(--border); color: var(--muted); font-size: 13.5px; }
+    dialog { border: 0; padding: 0; background: transparent; max-width: min(1400px, 96vw); }
+    dialog::backdrop { background: rgba(0,0,0,.88); }
+    dialog img { max-height: 90vh; width: auto; margin: 0 auto; border-radius: 10px; border: 1px solid var(--border); }
+    dialog p { text-align: center; color: var(--text-2); margin: 10px 0 0; font-size: 14px; }
+    dialog .close { position: fixed; top: 14px; right: 18px; width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--border); background: var(--surface-2); color: #fff; font-size: 22px; cursor: pointer; }
+    @media (max-width: 640px) { .topbar nav a:not(.go) { display: none; } }
+    @media (max-width: 420px) { .gallery { grid-template-columns: minmax(0, 1fr); } }
+  </style>
+</head>
+<body>
+  <div class="topbar"><div class="wrap">
+    <a class="brand" href="#top"><img src="media/icon.svg" alt="">PromptForge</a>
+    <nav><a href="#how">How it works</a><a href="#features">Features</a><a href="#screens">Screenshots</a><a class="go" href="#contact">Get it</a></nav>
+  </div></div>
+  <header class="hero" id="top"><div class="wrap" style="padding:0"><img src="media/banner.png" alt="PromptForge: turn ideas into apps just by chatting, with a live preview and a private AI"></div></header>
+  <main class="wrap">
+    <h1>Turn ideas into apps, <span>just by chatting.</span></h1>
+    <p class="lead">PromptForge is an AI app builder. Describe a website or app in plain words, watch the code get written and run live, then refine it by asking for changes. Every account has its own projects, and the AI runs on your own machine or server, so ideas and code never leave it.</p>
+    <div class="notice">This page is a product showcase. The software and its source code are proprietary and not available for download. All names and projects shown are demo data; the apps in the screenshots were built by PromptForge's own AI.</div>
+    <div class="cta">
+      <a class="wa-btn" href="https://wa.me/201208562225?text=Hello%2C%20I%20saw%20PromptForge%20and%20I%20would%20like%20to%20get%20the%20full%20system%20and%20the%20source%20code." target="_blank" rel="noopener">
+        <svg width="28" height="28" viewBox="0 0 36 36" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 33 7 25.6A15.5 15.5 0 1 1 12.6 31z"/><path d="M12.4 11.6c-.4 5.6 5.6 11.8 11.4 11.6l1.9-2.6-3.3-2-1.7 1.3a10.4 10.4 0 0 1-4.6-4.6l1.3-1.7-2-3.3z" fill="#fff" stroke-width="1.4"/></svg>
+        <span>Get the full system &amp; code<small>Chat on WhatsApp · +20 120 856 2225</small></span>
+      </a>
+      <span class="cta-note">For your company or clients, a live demo, or the complete source code.</span>
+    </div>
+
+    <h2 id="how"><span class="k">Three steps</span>How it works</h2>
+    <div class="steps">
+      <div class="step"><b>1</b><h3>Describe it</h3><p>Type an idea such as "a booking page for my yoga studio", or start from a template.</p></div>
+      <div class="step"><b>2</b><h3>Watch it appear</h3><p>The code is written in front of you and runs in a live preview, on desktop and phone sizes.</p></div>
+      <div class="step"><b>3</b><h3>Refine by chatting</h3><p>Ask for one change at a time. Every version is saved, so nothing is ever lost.</p></div>
+    </div>
+
+    <h2 id="features"><span class="k">What it does</span>Features</h2>
+    <div class="grid">
+      <div class="card"><h3><i>✦</i>Prompt to app</h3><ul>
+        <li>React and Tailwind web apps from plain-language requests</li>
+        <li>Files written one by one while you watch</li>
+        <li>Enhance prompt and six ready-made templates</li>
+        <li>Project instructions for brand, tone and rules</li></ul></div>
+      <div class="card"><h3><i>▶</i>Live preview &amp; code</h3><ul>
+        <li>The app runs live in the browser as it's built</li>
+        <li>Phone view to check mobile layouts</li>
+        <li>Built-in code editor with a file tree</li>
+        <li>Build mode for changes, Chat mode for questions</li></ul></div>
+      <div class="card"><h3><i>⟲</i>Self-repairing engine</h3><ul>
+        <li>Missing packages installed automatically</li>
+        <li>Made-up or missing icons fixed</li>
+        <li>Components the AI forgot are written for you</li>
+        <li>Fix with AI: usually instant, often without the AI at all</li></ul></div>
+      <div class="card"><h3><i>⧉</i>History, sharing &amp; export</h3><ul>
+        <li>Undo, or restore any earlier version</li>
+        <li>Publish a full-screen public link in one click</li>
+        <li>Download a standard React project</li>
+        <li>Duplicate and search projects</li></ul></div>
+      <div class="card"><h3><i>◉</i>A platform for many users</h3><ul>
+        <li>Sign-up and login with private projects per account</li>
+        <li>A daily build allowance per account</li>
+        <li>One small server with a built-in database</li>
+        <li>No external database to run or pay for</li></ul></div>
+      <div class="card"><h3><i>⛨</i>Private by design</h3><ul>
+        <li>An open-source AI model on your own hardware or GPU server</li>
+        <li>Users' ideas and code never go to an outside AI company</li>
+        <li>No per-use AI fees</li>
+        <li>Your brand, your platform</li></ul></div>
+    </div>
+
+    <h2 id="screens"><span class="k">Building</span>The workspace</h2>
+    <div class="gallery">
+      <figure><button type="button"><img src="media/workspace.png" alt="Workspace" loading="lazy"></button><figcaption><b>Workspace</b>: chat on the left, the live app on the right.</figcaption></figure>
+      <figure><button type="button"><img src="media/code.png" alt="Code view" loading="lazy"></button><figcaption><b>Code view</b> with a file tree and editor.</figcaption></figure>
+      <figure><button type="button"><img src="media/history.png" alt="Version history" loading="lazy"></button><figcaption><b>Version history</b>: restore any earlier version.</figcaption></figure>
+      <figure><button type="button"><img src="media/share.png" alt="Share panel" loading="lazy"></button><figcaption><b>Share</b> a public link in one click.</figcaption></figure>
+      <figure><button type="button"><img src="media/shared-app.png" alt="A shared app" loading="lazy"></button><figcaption><b>A shared app</b>, full screen without the builder.</figcaption></figure>
+      <figure><button type="button"><img src="media/dashboard.png" alt="Projects dashboard" loading="lazy"></button><figcaption><b>Dashboard</b>: all of an account's projects.</figcaption></figure>
+    </div>
+
+    <h2><span class="k">Getting started</span>For new visitors</h2>
+    <div class="gallery">
+      <figure><button type="button"><img src="media/home.png" alt="Landing page" loading="lazy"></button><figcaption><b>Landing page</b>: describe an idea or pick a template.</figcaption></figure>
+      <figure><button type="button"><img src="media/how-it-works.png" alt="How it works" loading="lazy"></button><figcaption><b>How it works</b>, features and FAQ.</figcaption></figure>
+      <figure><button type="button"><img src="media/signup.png" alt="Sign up" loading="lazy"></button><figcaption><b>Sign up</b>: the idea typed first is built straight after.</figcaption></figure>
+      <figure><button type="button"><img src="media/account.png" alt="Account menu" loading="lazy"></button><figcaption><b>Account menu</b> with the builds left today.</figcaption></figure>
+    </div>
+    <img class="phones" src="media/phones.png" alt="The PromptForge landing page and a built app on phones" loading="lazy">
+
+    <section class="contact" id="contact" aria-labelledby="contact-title">
+      <div><h2 id="contact-title">Get the full system</h2><p>Want PromptForge for your company or clients, a live demo, or the complete source code? Message me on WhatsApp: <b>+20 120 856 2225</b>.</p></div>
+      <a class="wa-btn" href="https://wa.me/201208562225?text=Hello%2C%20I%20saw%20PromptForge%20and%20I%20would%20like%20to%20get%20the%20full%20system%20and%20the%20source%20code." target="_blank" rel="noopener">
+        <svg width="28" height="28" viewBox="0 0 36 36" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 33 7 25.6A15.5 15.5 0 1 1 12.6 31z"/><path d="M12.4 11.6c-.4 5.6 5.6 11.8 11.4 11.6l1.9-2.6-3.3-2-1.7 1.3a10.4 10.4 0 0 1-4.6-4.6l1.3-1.7-2-3.3z" fill="#fff" stroke-width="1.4"/></svg>
+        <span>Chat on WhatsApp<small>+20 120 856 2225</small></span>
+      </a>
+    </section>
+
+    <footer>
+      <p>PromptForge is available for companies and agencies on request: WhatsApp <a href="https://wa.me/201208562225">+20 120 856 2225</a> or <a href="https://github.com/rana537omar">@rana537omar</a> on GitHub.</p>
+      <p>Copyright &copy; 2026 Rana Omar. All rights reserved. The text and images on this page are shared for viewing only. No license is granted to copy, reuse or republish them, or to use the software they show.</p>
+    </footer>
+  </main>
+  <dialog id="zoom" aria-label="Screenshot"><button class="close" type="button" aria-label="Close">×</button><img alt=""><p></p></dialog>
+  <a class="wa-float" href="https://wa.me/201208562225?text=Hello%2C%20I%20saw%20PromptForge%20and%20I%20would%20like%20to%20get%20the%20full%20system%20and%20the%20source%20code." target="_blank" rel="noopener" aria-label="Chat on WhatsApp to get the full system" title="Chat on WhatsApp: +20 120 856 2225">
+    <svg width="30" height="30" viewBox="0 0 36 36" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 33 7 25.6A15.5 15.5 0 1 1 12.6 31z"/><path d="M12.4 11.6c-.4 5.6 5.6 11.8 11.4 11.6l1.9-2.6-3.3-2-1.7 1.3a10.4 10.4 0 0 1-4.6-4.6l1.3-1.7-2-3.3z" fill="#fff" stroke-width="1.4"/></svg>
+  </a>
+  <script>
+    document.querySelectorAll('img').forEach((i) => i.addEventListener('contextmenu', (e) => e.preventDefault()));
+    const dlg = document.getElementById('zoom');
+    document.querySelectorAll('figure button').forEach((b) => b.addEventListener('click', () => {
+      const img = b.querySelector('img');
+      dlg.querySelector('img').src = img.src;
+      dlg.querySelector('img').alt = img.alt;
+      dlg.querySelector('p').textContent = b.parentElement.querySelector('figcaption').textContent;
+      dlg.showModal();
+    }));
+    dlg.addEventListener('click', (e) => { if (e.target === dlg || e.target.classList.contains('close')) dlg.close(); });
+  </script>
+</body>
+</html>
