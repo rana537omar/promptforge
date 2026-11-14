@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>PromptForge</title>
-  <meta name="description" content="PromptForge: an AI app builder. Describe a website or app in plain words and watch it get built live, on your own private AI.">
-  <meta property="og:title" content="PromptForge: turn ideas into apps, just by chatting">
+  <title>PromptForge (AI App Builder)</title>
+  <meta name="description" content="PromptForge (AI App Builder): Describe a website or app in plain words and watch it get built live, on your own private AI.">
+  <meta property="og:title" content="PromptForge (AI App Builder): turn ideas into apps, just by chatting">
   <meta property="og:description" content="Describe it, watch it appear, refine it by chatting. Live preview, version history, sharing, and a private AI.">
   <meta property="og:image" content="https://rana537omar.github.io/promptforge/media/banner.png">
   <link rel="icon" href="media/icon.svg" type="image/svg+xml">
@@ -20,6 +20,8 @@
     .topbar .wrap { display: flex; align-items: center; gap: 12px; height: 60px; }
     .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 19px; letter-spacing: -.02em; color: var(--text); text-decoration: none; }
     .brand img { width: 30px; height: 30px; }
+    .brand .type { font-weight: 500; font-size: 15px; color: var(--muted); letter-spacing: 0; }
+    @media (max-width: 420px) { .brand .type { display: none; } }
     .topbar nav { margin-left: auto; display: flex; gap: 4px; }
     .topbar nav a { color: var(--text-2); text-decoration: none; font-size: 14.5px; font-weight: 600; padding: 7px 12px; border-radius: 999px; }
     .topbar nav a:hover { background: var(--surface-2); color: var(--text); }
@@ -35,6 +37,9 @@
     .step b { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, var(--orange), var(--pink)); color: #fff; margin-bottom: 12px; }
     .step h3 { margin: 0 0 4px; font-size: 16.5px; }
     .step p { margin: 0; color: var(--text-2); font-size: 14.5px; }
+    .video { border-radius: 16px; overflow: hidden; border: 1px solid var(--border); background: #000; box-shadow: 0 0 0 6px rgba(139,123,255,.08), 0 30px 80px rgba(0,0,0,.6); }
+    .video video { width: 100%; aspect-ratio: 16 / 9; }
+    .video-note { color: var(--muted); font-size: 14px; margin: 12px 2px 0; }
     .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; }
     .card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 18px 18px 20px; }
     .card h3 { margin: 0 0 10px; font-size: 16.5px; display: flex; align-items: center; gap: 10px; }
@@ -72,10 +77,10 @@
 </head>
 <body>
   <div class="topbar"><div class="wrap">
-    <a class="brand" href="#top"><img src="media/icon.svg" alt="">PromptForge</a>
-    <nav><a href="#how">How it works</a><a href="#features">Features</a><a href="#screens">Screenshots</a><a class="go" href="#contact">Get it</a></nav>
+    <a class="brand" href="#top"><img src="media/icon.svg" alt="">PromptForge <span class="type">(AI App Builder)</span></a>
+    <nav><a href="#demo">Demo</a><a href="#how">How it works</a><a href="#features">Features</a><a href="#screens">Screenshots</a><a class="go" href="#contact">Get it</a></nav>
   </div></div>
-  <header class="hero" id="top"><div class="wrap" style="padding:0"><img src="media/banner.png" alt="PromptForge: turn ideas into apps just by chatting, with a live preview and a private AI"></div></header>
+  <header class="hero" id="top"><div class="wrap" style="padding:0"><img src="media/banner.png" alt="PromptForge (AI App Builder): turn ideas into apps just by chatting, with a live preview and a private AI"></div></header>
   <main class="wrap">
     <h1>Turn ideas into apps, <span>just by chatting.</span></h1>
     <p class="lead">PromptForge is an AI app builder. Describe a website or app in plain words, watch the code get written and run live, then refine it by asking for changes. Every account has its own projects, and the AI runs on your own machine or server, so ideas and code never leave it.</p>
@@ -87,6 +92,14 @@
       </a>
       <span class="cta-note">For your company or clients, a live demo, or the complete source code.</span>
     </div>
+
+    <h2 id="demo"><span class="k">Watch</span>Demo video</h2>
+    <div class="video">
+      <video controls preload="metadata" poster="media/video-poster.png" controlslist="nodownload noremoteplayback" disablepictureinpicture oncontextmenu="return false" playsinline>
+        <source src="media/PromptForge-demo.mp4" type="video/mp4">
+      </video>
+    </div>
+    <p class="video-note">2:29 · 1080p. A visitor tours the landing page and logs in, types an idea, and watches PromptForge build the app live, then refines it by chatting. Then the phone view, the code, version history, publishing a share link, and the projects dashboard. The AI builds are sped up and labelled; everything else is real time.</p>
 
     <h2 id="how"><span class="k">Three steps</span>How it works</h2>
     <div class="steps">

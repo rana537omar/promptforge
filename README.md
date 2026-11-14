@@ -1,6 +1,6 @@
-<p align="center"><img src="media/banner.png" alt="PromptForge: turn ideas into apps just by chatting, with a live preview and a private AI" width="100%"></p>
+<p align="center"><img src="media/banner.png" alt="PromptForge (AI App Builder): turn ideas into apps just by chatting, with a live preview and a private AI" width="100%"></p>
 
-# PromptForge
+# PromptForge (AI App Builder)
 
 **An AI app builder: describe a website or app in plain words, and watch it get built.** PromptForge writes the code, runs it live in the browser and keeps improving it as you chat. Everyone gets their own account and projects, and the AI runs on your own machine or server, so ideas and code never go to an outside AI company.
 
@@ -9,6 +9,12 @@
 **Showcase website:** https://rana537omar.github.io/promptforge/
 
 <p align="center"><a href="https://wa.me/201208562225?text=Hello%2C%20I%20saw%20PromptForge%20and%20I%20would%20like%20to%20get%20the%20full%20system%20and%20the%20source%20code."><img src="media/whatsapp-button.svg" alt="Get the full system and source code: chat on WhatsApp, +20 120 856 2225" width="380"></a></p>
+
+## Demo video
+
+<p align="center"><a href="https://rana537omar.github.io/promptforge/#demo"><img src="media/video-poster.png" alt="Watch the PromptForge demo" width="100%"></a></p>
+
+A walkthrough of 2½ minutes, in 1080p. A visitor tours the landing page and logs in, types an idea, and watches PromptForge build the app live, then refines it by chatting. It then shows the phone view, the code, version history, publishing a share link and the projects dashboard. The AI builds are sped up and labelled on screen. **[Watch it on the showcase website](https://rana537omar.github.io/promptforge/#demo)**.
 
 ## How it works
 
